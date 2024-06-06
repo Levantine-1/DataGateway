@@ -1,3 +1,3 @@
 package src.main.java.com.levantine.datagateway;
 
-public record Greeting(long id, String content) { }
+public record Greeting(String content) { }
