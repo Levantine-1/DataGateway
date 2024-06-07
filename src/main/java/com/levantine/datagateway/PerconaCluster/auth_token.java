@@ -53,8 +53,10 @@ public class auth_token {
     }
 
     // Setters
-    public static String generateToken() {
-        return UUID.randomUUID().toString();
+    public static String generateToken(String seed) { // Generate a token using the email as a seed string.
+        String epoch_time = Long.toString(System.currentTimeMillis());
+        String full_seed = seed + epoch_time; // This is a very simple way to make the token unique.
+        return UUID.nameUUIDFromBytes(full_seed.getBytes(StandardCharsets.UTF_8)).toString();
     }
 
     public void setId(int id) {

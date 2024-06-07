@@ -33,7 +33,7 @@ public class GreetingController {
 	@PostMapping("/generateToken")
 	public String generateToken(@RequestBody TokenRequest request) throws NoSuchAlgorithmException {
 		String email = request.getEmail();
-		String token = auth_token.generateToken();
+		String token = auth_token.generateToken(email);
 		auth_token authToken = new auth_token();
 		authToken.setTokenHash(token);
 		authToken.setCreatedDate(new java.util.Date());
