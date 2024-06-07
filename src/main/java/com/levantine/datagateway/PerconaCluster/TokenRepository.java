@@ -4,4 +4,5 @@ import com.levantine.datagateway.PerconaCluster.auth_token;
 import org.springframework.data.repository.CrudRepository;
 
 public interface TokenRepository extends CrudRepository<auth_token, Long> {
+    auth_token findByTokenHash(String token);
 }

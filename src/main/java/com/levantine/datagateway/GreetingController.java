@@ -4,6 +4,7 @@ import com.levantine.datagateway.PerconaCluster.TokenRepository;
 import com.levantine.datagateway.PerconaCluster.TokenRequest;
 import com.levantine.datagateway.PerconaCluster.auth_token;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
@@ -25,11 +26,6 @@ public class GreetingController {
 	@Autowired
 	private TokenRepository tokenRepository;
 
-	@GetMapping("/tokens")
-	public Iterable<auth_token> getTokens() {
-		return tokenRepository.findAll();
-	}
-
 	@PostMapping("/generateToken")
 	public String generateToken(@RequestBody TokenRequest request) throws NoSuchAlgorithmException {
 		String email = request.getEmail();
@@ -38,7 +34,12 @@ public class GreetingController {
 		authToken.setTokenHash(token);
 		authToken.setCreatedDate(new java.util.Date());
 		authToken.setLastAccessed(new java.util.Date());
-		tokenRepository.save(authToken);
+		try {
+			tokenRepository.save(authToken);
+		} catch (DataIntegrityViolationException e) {
+			logger.warn("Token already exists in the database."); // I know this isn't great, but it's just a demo.
+			// A real implementation would have a better way to handle this like using Argon2 and stuff.
+		}
 		logger.info("Email: " + email); // This is just for a demo, the email is not stored or used anywhere for now.
 		return token;
 	}

@@ -54,8 +54,8 @@ public class auth_token {
 
     // Setters
     public static String generateToken(String seed) { // Generate a token using the email as a seed string.
-        String epoch_time = Long.toString(System.currentTimeMillis());
-        String full_seed = seed + epoch_time; // This is a very simple way to make the token unique.
+        String internal_salt = "IdunnoSomeKindaSaltStringIguessLMAOWTFBBQ";
+        String full_seed = seed + internal_salt;
         return UUID.nameUUIDFromBytes(full_seed.getBytes(StandardCharsets.UTF_8)).toString();
     }
 
