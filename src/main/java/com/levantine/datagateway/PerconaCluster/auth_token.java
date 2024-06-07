@@ -27,7 +27,7 @@ public class auth_token {
     @Column(name = "last_accessed")
     private Date lastAccessed;
 
-    public String hashify(String token) throws NoSuchAlgorithmException { // Take a token and hash it
+    public static String hashify(String token) throws NoSuchAlgorithmException { // Take a token and hash it
         // https://stackoverflow.com/questions/5531455/how-to-hash-some-string-with-sha-256-in-java
         // I know Argon2 is the new thing, but it looks much more complicated than this, so I'll deal with it later.
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
