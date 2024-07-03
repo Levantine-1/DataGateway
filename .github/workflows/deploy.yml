@@ -36,7 +36,9 @@ jobs:
   compile_binary_build_and_push_container:
   # This job is used to compile the binary, build the docker image and push it to ECR
   # I'm not uploading the binary to a code artifact repository to keep things simple.
-  # Interview me if you want further details.
+  # The compile build and push steps are in the same job because the binary is compiled in the same directory as the Dockerfile
+  # And the Dockerfile is used to build the image by taking the freshly compiled binary and sticking it in the container image.
+  # To do that without an artifactory, they're done in the same job so the file persists through the steps.
 
     name: Compile Build Push Container
     runs-on: ubuntu-latest
