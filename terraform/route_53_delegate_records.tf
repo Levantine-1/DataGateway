@@ -10,11 +10,12 @@ provider "aws" {
   secret_key = try(data.vault_generic_secret.aws_delegation_creds.data["secret_key"], null)
 }
 
-resource "aws_route53_record" "configure_delegate_record" {
-  provider = aws.delegate
-  zone_id = var.levantine_io_hosted_zone_id
-  name    = "datagateway.levantine.io"
-  type    = "A"
-  ttl     = 300
-  records = [data.aws_instance.bastion_instance.public_ip]
-}
+# NOTE: 2024-07-02 Delegate records not required for now.
+#resource "aws_route53_record" "configure_delegate_record" {
+#  provider = aws.delegate
+#  zone_id = var.levantine_io_hosted_zone_id
+#  name    = "datagateway.levantine.io"
+#  type    = "A"
+#  ttl     = 300
+#  records = [data.aws_instance.bastion_instance.public_ip]
+#}
