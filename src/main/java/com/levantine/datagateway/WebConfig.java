@@ -15,5 +15,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor).addPathPatterns("/listTokens/**");
         registry.addInterceptor(tokenInterceptor).addPathPatterns("/amIAGoodMouse/**");
+        registry.addInterceptor(tokenInterceptor).addPathPatterns("/analytics/**");
     }
 }
