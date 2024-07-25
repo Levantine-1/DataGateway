@@ -5,18 +5,16 @@ import com.levantine.datagateway.PerconaCluster.TokenRequest;
 import com.levantine.datagateway.PerconaCluster.auth_token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.security.NoSuchAlgorithmException;
 
 
 @RestController
-public class GreetingController {
-	private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
+public class UnauthenticatedController {
+	private static final Logger logger = LoggerFactory.getLogger(UnauthenticatedController.class);
 
 	@GetMapping("/mousey")
 	public Greeting mousey(@RequestParam(value = "name", defaultValue = "Mousey") String name) {
