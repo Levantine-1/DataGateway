@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import org.springframework.web.bind.annotation.RequestHeader;
+import java.util.Map;
 
 @RestController
 public class AuthenticatedController {
@@ -41,7 +43,14 @@ public class AuthenticatedController {
     private PortfolioAnalyticsDataRepository portfolioAnalyticsDataRepository;
 
     @PostMapping("/analytics")
-    public ResponseEntity<Void> analytics(@RequestBody PortfolioAnalyticsDTO requestDTO) {
+    public ResponseEntity<Void> analytics(@RequestHeader Map<String, String> headers, @RequestBody PortfolioAnalyticsDTO requestDTO) {
+
+        // Log headers
+        headers.forEach((key, value) -> logger.info("Header '{}' = {}", key, value));
+
+        // Log body
+        logger.info("Request Body: {}", requestDTO);
+
         PortfolioAnalyticsEntity entity = new PortfolioAnalyticsEntity();
         entity.setIpAddr(requestDTO.getIpAddr());
         entity.setTimedate(requestDTO.getTimedate());
