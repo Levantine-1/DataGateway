@@ -23,6 +23,12 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader("Authorization");
+
+        if (token == null || token.isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED, "Authorization header is missing or empty");
+        }
+
         String tokenHash = auth_token.hashify(token);
         auth_token authToken = tokenRepository.findByTokenHash(tokenHash);
 
