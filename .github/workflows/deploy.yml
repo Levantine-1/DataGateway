@@ -84,7 +84,7 @@ jobs:
   deploy_container:
     name: Pull and Deploy Container
     runs-on: ubuntu-latest
-    needs: build_and_push_container
+    needs: compile_binary_build_and_push_container
     steps:
       - name: Check out code
         uses: actions/checkout@v4
