@@ -30,11 +30,11 @@ public class AuthenticatedController {
 
     @GetMapping("/amIAGoodMouse")
     public static Object mouse_message() {
-        String[] responses = {"You are a very good mouse.",
-                                "You are a good mouse.",
-                                "You are an OK mouse.",
-                                "You are a bad mouse.",
-                                "You are a very bad mouse."};
+        String[] responses = {"You are a very good mouse!",
+                                "You are a good mouse!",
+                                "You are an OK mouse!",
+                                "You are a bad mouse!",
+                                "You are a very bad mouse!"};
         return responses[(int) (Math.random() * responses.length)];
     }
     @Autowired
