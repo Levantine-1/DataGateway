@@ -12,7 +12,7 @@ public class PortfolioAnalyticsService {
     public void saveAnalyticsData(PortfolioAnalyticsRequest request) {
         PortfolioAnalyticsEntity data = new PortfolioAnalyticsEntity();
         // Convert request to data entity and set properties
-        data.setIpAddr(request.getIpAddr());
+        data.setIpAddr(request.getIp_addr());
         data.setTimedate(request.getTimedate());
         data.setRequest(request.getRequest());
         data.setGeoLocation(request.getGeoLocation());

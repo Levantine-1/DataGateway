@@ -1,19 +1,19 @@
 package com.levantine.datagateway.analytics;
 
 public class PortfolioAnalyticsRequest {
-    private String ipAddr;
+    private String ip_addr;
     private String timedate;
     private String request;
     private String geoLocation;
     private String userAgent;
 
     // Getters and Setters
-    public String getIpAddr() {
-        return ipAddr;
+    public String getIp_addr() {
+        return ip_addr;
     }
 
-    public void setIpAddr(String ipAddr) {
-        this.ipAddr = ipAddr;
+    public void setIp_addr(String ip_addr) {
+        this.ip_addr = ip_addr;
     }
 
     public String getTimedate() {
