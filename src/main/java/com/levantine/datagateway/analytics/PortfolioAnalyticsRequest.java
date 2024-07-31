@@ -1,7 +1,7 @@
 package com.levantine.datagateway.analytics;
 
 public class PortfolioAnalyticsRequest {
-    private String ip_addr;
+    private String ipAddr;
     private String timedate;
     private String request;
     private String geoLocation;
@@ -9,11 +9,11 @@ public class PortfolioAnalyticsRequest {
 
     // Getters and Setters
     public String getIp_addr() {
-        return ip_addr;
+        return ipAddr;
     }
 
-    public void setIp_addr(String ip_addr) {
-        this.ip_addr = ip_addr;
+    public void setIp_addr(String ipAddr) {
+        this.ipAddr = ipAddr;
     }
 
     public String getTimedate() {

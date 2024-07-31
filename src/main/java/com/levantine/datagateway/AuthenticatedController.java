@@ -44,13 +44,6 @@ public class AuthenticatedController {
 
     @PostMapping("/analytics")
     public ResponseEntity<Void> analytics(@RequestHeader Map<String, String> headers, @RequestBody PortfolioAnalyticsDTO requestDTO) {
-
-        // Log headers
-        headers.forEach((key, value) -> logger.info("Header '{}' = {}", key, value));
-
-        // Log body
-        logger.info("Request Body: {}", requestDTO);
-
         PortfolioAnalyticsEntity entity = new PortfolioAnalyticsEntity();
         entity.setIpAddr(requestDTO.getIpAddr());
         entity.setTimedate(requestDTO.getTimedate());
