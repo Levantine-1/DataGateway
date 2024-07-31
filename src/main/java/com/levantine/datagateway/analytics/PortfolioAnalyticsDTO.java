@@ -1,6 +1,9 @@
 package com.levantine.datagateway.analytics;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PortfolioAnalyticsDTO {
+    @JsonProperty("ip_addr")
     private String ipAddr;
     private String timedate;
     private String request;
