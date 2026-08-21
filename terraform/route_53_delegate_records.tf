@@ -1,21 +1,9 @@
-data "vault_generic_secret" "aws_delegation_creds" {
-  path = "kv/aws/iam_access_keys/subdomain_delegation"
-}
-
-provider "aws" {
-  # NOTE: The delegation account is used for DNS subdomain delegation between the root account and the subdomain account
-  alias = "delegate"
-  region = var.region
-  access_key = try(data.vault_generic_secret.aws_delegation_creds.data["access_key"], null)
-  secret_key = try(data.vault_generic_secret.aws_delegation_creds.data["secret_key"], null)
-}
-
-# NOTE: 2024-07-02 Delegate records not required for now.
-#resource "aws_route53_record" "configure_delegate_record" {
-#  provider = aws.delegate
-#  zone_id = var.levantine_io_hosted_zone_id
-#  name    = "datagateway.levantine.io"
-#  type    = "A"
-#  ttl     = 300
-#  records = [data.aws_instance.bastion_instance.public_ip]
-#}
+# No delegate-zone record for DataGateway ("2024-07-02 Delegate records
+# not required for now" -- the only resource here was already commented
+# out). This file previously declared an aws.delegate provider +
+# Vault-sourced credentials data source anyway, even with nothing using
+# them -- harmless when applied from `service` (which can reach Vault),
+# but broken from a GitHub-hosted runner with no route to
+# vault.internal.levantine.io, and Terraform evaluates declared data
+# sources regardless of whether anything consumes their output. Removed
+# entirely.
