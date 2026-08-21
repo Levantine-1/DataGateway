@@ -1,7 +1,7 @@
 # https://spring.io/guides/gs/spring-boot-docker
 # https://stackoverflow.com/questions/46057625/externalising-spring-boot-properties-when-deploying-to-docker
 
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 COPY build/libs/*SNAPSHOT.jar app.jar
 
 # NOTE: The application.properties just contains generic configurations true for all envs.
